@@ -5,12 +5,32 @@ source "$CURRENT_DIR/variables.sh"
 session_name=$1
 session_dir=$2
 
-tmux new-session -ds "$session_name" -c "$session_dir"
-
-if [ ! -f "$layouts_dir/$session_name" ]; then
-    tmux display-message "Session file $session_name not found. Creating empty session."
-    return
+# Do nothing if no session was entered.
+if [ -z "${session_name:-}" ]; then
+    exit 0
 fi
+
+# Switch to session if it already exists.
+if tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux switch-client -t "$session_name"
+    exit 0
+fi
+
+# Offer to create a new session if not found and no directory given.
+if [ ! -f "$layouts_dir/$session_name" ]; then
+    if [ -z "${session_dir:-}" ]; then
+        tmux confirm-before -p \
+            "Session file $session_name not found. Create new session $session_name (y/n)?" \
+            "new-session -ds $session_name; switch-client -t $session_name"
+        exit 0
+    fi
+    tmux new-session -ds "$session_name" -c "$session_dir"
+    tmux switch-client -t "$session_name"
+    exit 0
+fi
+
+# Layout file exists, continue.
+tmux new-session -ds "$session_name"
 
 tmux display-message "Loading session $session_name."
 
