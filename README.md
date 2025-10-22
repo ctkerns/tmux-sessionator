@@ -60,9 +60,6 @@ If no layout file exists, a new session with the provided name can be created.
 If the optional directory was specified, the newly created session will begin
 in this directory.
 
-If the session is not open, but a layout file already exists, the session
-will be initialized from the layout file. 
-
 ### Integrating with other tools.
 ```prefix + R``` is just a shortcut for running the script
 ```INSTALL_PATH/sessionator/scripts/load-layout.sh```. You can run this script
@@ -72,7 +69,7 @@ fuzzy-find this directory and pipe the output to load-layout.sh to create a
 simple session loader. Personally, I fuzzy-find directories likely to contain
 projects and pipe the selected basename and directory into load-layout.sh.
 
-Beyond writing session manageement scripts, I'm not sure how to integrate
+Beyond writing session management scripts, I'm not sure about integrating
 tmux-sessionator with other plugins. If you have managed to do this, let me
 know your approach so that it can be added here for the reference of others.
 
