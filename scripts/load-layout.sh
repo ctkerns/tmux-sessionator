@@ -11,7 +11,7 @@ if [ -z "${session_name:-}" ]; then
 fi
 
 # Switch to session if it already exists.
-if tmux has-session -t "$session_name" 2>/dev/null; then
+if tmux has-session -t="$session_name" 2>/dev/null; then
     tmux switch-client -t "$session_name"
     exit 0
 fi
