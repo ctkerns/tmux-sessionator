@@ -50,7 +50,7 @@ You should now be able to use the plugin.
 To save a session, first arrange it how you would expect it to be restored.
 tmux-sessionator will save your windows, pane layouts, and active commands when
 pressing ```prefix + S```. Session layouts are stored in
-```~/.tmux/plugins/sessionator/```.
+```~/.tmux/plugins/tmux-sessionator/```.
 
 The built-in ```prefix + R``` allows you to type the name of a session to
 switch to. ```prefix + R``` will prompt you to enter a session name (and
@@ -62,7 +62,7 @@ in this directory.
 
 ### Integrating with other tools.
 ```prefix + R``` is just a shortcut for running the script
-```INSTALL_PATH/sessionator/scripts/load-layout.sh```. You can run this script
+```INSTALL_PATH/tmux-sessionator/scripts/load-layout.sh```. You can run this script
 directly with the same arguments accepted by ```prefix + R```. The session
 layouts are stored at ```~/.local/share/tmux/sessionator/```. You could
 fuzzy-find this directory and pipe the output to load-layout.sh to create a
